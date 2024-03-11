@@ -1,0 +1,40 @@
+main{
+    
+    width: 100%;
+}
+.container{
+    background-color: white;
+    width: 30%;
+    height: fit-content;
+    padding: 30px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+gap: 30px;
+}
+button{
+  border: none;
+  height: 32px;
+  background-color: rgb(238, 73, 73);
+  cursor: pointer;
+  color: wheat;
+  font-size: 15px;
+}
+input{
+    padding-left: 9px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 17px;
+}
+.section{
+    margin: 10px;
+    display: flex;
+    background-color: white;
+    border: 1px solid rgb(112, 109, 109);
+    height: fit-content;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 100px;
+    border-radius: 6px;
+}
