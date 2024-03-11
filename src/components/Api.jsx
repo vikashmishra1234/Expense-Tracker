@@ -22,10 +22,10 @@ export const Expenses = async(data)=>{
 
 export const getexpense = async()=>{
     try {
-        const res = await axios.get('http://localhost:5000/api/products/expense')
+        const res = await axios.get('https://backend-expense-tracker-79np.onrender.com/api/products/expense')
         return res.data;
     } catch (error) {
-        console.log("error while adding income");
+        console.log(error.message+"error while getting expenses");
         return error.message;
     }
 }
