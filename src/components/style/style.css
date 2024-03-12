@@ -46,11 +46,32 @@ li a{
     width: 709px;
     
 }
+.ham{
+    position: absolute;
+    display: none;
+}
+
 
 @media only screen and (max-width: 480px) {
+   
     .aside{
         display: none;
+        position: absolute;
+        transition: 11s ease-out;
     }
+    .nav{
+        width: 219px;
+    }
+    .aside .nav ul{
+        height: 139px;
+    }
+  .ham{
+    display: block;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+    color: indianred;
+  }
     .dashboard{
         flex-direction: column;
     }

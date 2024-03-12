@@ -8,7 +8,7 @@ import ContextProvider from "../context/ContextProvider";
 let cost=[];
 
 
-const History = ({data,setChange,change,Delete}) => {
+const History = ({data}) => {
   const {setAmount} = useContext(ContextProvider);
   var d = new Date(data.createdAt);
   let tarik= d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
@@ -16,22 +16,10 @@ const History = ({data,setChange,change,Delete}) => {
   let today= date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()
   if(today===tarik){
     tarik='today'
-   
-    
-    
 
   }
 
-const handleClick = async(id)=>{
-  const res = await Delete(id);
-  if(res.success){
-    alert(res.message)
-    setChange(change=!change)
-  }
-  else{
-    alert(res.error)
-  }
-}
+
  
   return (
     <div className="section">
@@ -43,9 +31,7 @@ const handleClick = async(id)=>{
     <div >
       {tarik}
     </div>
-    <div  style={{cursor:'pointer'}}>
-      <MdDelete onClick={()=>handleClick(data._id)} size={27}/>
-    </div>
+   
     </div>
   );
 };

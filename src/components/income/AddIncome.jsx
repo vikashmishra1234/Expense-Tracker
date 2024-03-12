@@ -6,7 +6,7 @@ import { addIncome, delIncome, getIncome } from "../Api";
 import ContextProvider from "../context/ContextProvider";
 import { Today } from "../TodayExpense";
 const AddIncome = () => {
-  const {setIncomes,setRecents,Recentes,recentTrans}=useContext(ContextProvider)
+  const {setIncomes,setOpened,Opened,setRecents,Recentes,recentTrans}=useContext(ContextProvider)
   const [income, setIncome] = useState([{}]);
   const[change,setChange]=useState(true);
   const[amount,setAmount]=useState(0);
@@ -17,6 +17,7 @@ const AddIncome = () => {
       let res = await getIncome();
       setIncome(res.Income);
       setIncomes(res.Income);
+      setOpened(false);
      let Amount =await Today(res.Income);   
      setAmount(Amount)
     };
@@ -46,14 +47,19 @@ const handleSubmit = async(e)=>{
 }
   return (
     <main className="main">
+            <div className='ham' onClick={()=>setOpened(Opened=>!Opened)}>{
+               Opened?'Close':"Menu"
+            }</div>
+
       <h1 style={{ textAlign: "center", background: "white", padding: "7px" }}>
         Total Income <small>(today): $ {amount}</small>
       </h1>
       <div className="flex" style={{ display: "flex" }}>
         <Form handleSubmit={handleSubmit} Form={'Add Income'} change={change} setChange={setChange} />
         <div>
+          <h3 style={{textAlign:'center'}}>History</h3>
           {income.length===0?'':income.map((data) => (
-           <History Delete={delIncome} change={change} setChange={setChange}  data={data} key={data._id} />
+           <History   data={data} key={data._id} />
           ))}
         </div>
       </div>

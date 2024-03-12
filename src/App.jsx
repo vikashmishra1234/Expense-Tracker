@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import AddIncome from './components/income/AddIncome';
 import Sidebar from './components/sidebar/Sidebar';
 import ContextState from './components/context/ContextState';
@@ -11,6 +11,7 @@ const App = () => {
 
     <div style={{display:'flex',gap:'20px'}}>
       <Router>
+
         <Sidebar/>
         <Routes>
           <Route exact path='/' element={<Dashboard/>}/>

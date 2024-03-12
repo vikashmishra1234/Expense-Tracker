@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import '../style/style.css'
 import { MdAttachMoney } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { Link } from 'react-router-dom';
+import ContextProvider from '../context/ContextProvider';
 const Sidebar = () => {
+  const {Opened } = useContext(ContextProvider);
   return (
-    <aside style={{display:'block'}} className='aside'>
+    <aside style={{display:Opened?'block':''}} className='aside'>
         <nav className='nav'>
        <header className='header'>
         

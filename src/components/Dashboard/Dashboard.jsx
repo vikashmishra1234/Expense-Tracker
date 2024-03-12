@@ -7,9 +7,10 @@ import { getIncome, getexpense } from '../Api'
 import Balance from './Balace'
 
 const Dashboard = () => {
-    const {recentTrans,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
+    const {setOpened,Opened,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
     useEffect(() => {
         const getIncom = async () => {
+          setOpened(false)
           let res = await getIncome();
           let res2 = await getexpense();
           setExpenses(res2.Expense);
@@ -23,6 +24,10 @@ const Dashboard = () => {
     
   return (
     <>
+          <div className='ham' onClick={()=>setOpened(Opened=>!Opened)}>{
+             Opened?'Close':"Menu"
+          }</div>
+
     <div style={{paddingTop:'20px'}}>
     <header>
     <Balance/>

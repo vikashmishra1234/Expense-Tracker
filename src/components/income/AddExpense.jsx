@@ -6,7 +6,7 @@ import { Expenses, delExpense, getexpense } from "../Api";
 import ContextProvider from "../context/ContextProvider";
 import { Today, calculateBalance } from "../TodayExpense";
 const Addexpense = () => {
-  const {setExpenses,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
+  const {setExpenses,setOpened,Opened,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
   const [expense, setExpense] = useState([]);
   const[change,setChange]=useState(true)
   const[amount,setAmount]=useState(0);
@@ -17,6 +17,7 @@ const Addexpense = () => {
       let res = await getexpense();
       setExpense(res.Expense);
       setExpenses(res.Expense);
+      setOpened(false);
       let amount = await Today(res.Expense);
       setAmount(amount)
       
@@ -52,12 +53,17 @@ let currentBalance=calculateBalance(Incomes,Expensess);
 }
   return (
     <main className="main">
+
+            <div className='ham' onClick={()=>setOpened(Opened=>!Opened)}>{
+              Opened?'Close':"Menu"
+            }</div>
       <h1 style={{ textAlign: "center", background: "white", padding: "7px" }}>
         Total expense <small>(today): $ {amount}</small>
       </h1>
       <div className="flex" style={{ display: "flex" }}>
         <Form handleSubmit={handleSubmit} Form={'Add Expense'}  change={change} setChange={setChange} />
         <div>
+        <h3 style={{textAlign:'center'}}>History</h3>
           {expense.length===0?'':expense.map((data) => (
            <History Delete={delExpense} change={change} setChange={setChange}  data={data} key={data._id} />
           ))}
