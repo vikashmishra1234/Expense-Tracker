@@ -6,7 +6,7 @@ import { FcMoneyTransfer } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
-    <aside className='aside'>
+    <aside style={{display:'block'}} className='aside'>
         <nav className='nav'>
        <header className='header'>
         
