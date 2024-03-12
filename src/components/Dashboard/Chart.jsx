@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import '../style/style.css'
 import { Chart as Chartjs,
 CategoryScale,
 LinearScale,
@@ -10,6 +11,7 @@ Legend,
 ArcElement } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import ContextProvider from '../context/ContextProvider';
+import { dateFormate } from '../TodayExpense';
 
 Chartjs.register(
     CategoryScale,
@@ -24,11 +26,12 @@ ArcElement,
 
 
 const Chart = () => {
-    const {Incomes,Expenses} = useContext(ContextProvider);
+    const {Incomes,Expensess} = useContext(ContextProvider);
     const data = {
         labels:Incomes.map((inc)=>{
             const {createdAt}= inc;
-            return createdAt;
+           let tarik= dateFormate(createdAt)
+            return tarik;
         }),
         datasets:[
             {
@@ -45,7 +48,7 @@ const Chart = () => {
             {
                 label:'Expenses',
                 data:[
-                    ...Expenses.map((exp)=>{
+                    ...Expensess.map((exp)=>{
                         const {amount}= exp;
                         return amount
                     })
@@ -58,8 +61,8 @@ const Chart = () => {
 
     }
   return (
-    <div>
-      <Line data={data}/>
+    <div className='chart' >
+      <Line     data={data}/>
     </div>
   )
 }

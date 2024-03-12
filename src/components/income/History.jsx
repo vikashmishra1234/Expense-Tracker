@@ -8,7 +8,7 @@ import ContextProvider from "../context/ContextProvider";
 let cost=[];
 
 
-const History = ({data,setChange,change}) => {
+const History = ({data,setChange,change,Delete}) => {
   const {setAmount} = useContext(ContextProvider);
   var d = new Date(data.createdAt);
   let tarik= d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
@@ -23,7 +23,7 @@ const History = ({data,setChange,change}) => {
   }
 
 const handleClick = async(id)=>{
-  const res = await delIncome(id);
+  const res = await Delete(id);
   if(res.success){
     alert(res.message)
     setChange(change=!change)

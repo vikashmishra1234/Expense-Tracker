@@ -2,35 +2,28 @@ import React, { useContext, useEffect, useState } from "react";
 import "../style/addincome.css";
 import History from "./History";
 import Form from "./Form";
-import { addIncome, getIncome } from "../Api";
+import { addIncome, delIncome, getIncome } from "../Api";
 import ContextProvider from "../context/ContextProvider";
+import { Today } from "../TodayExpense";
 const AddIncome = () => {
-  const {setIncomes}=useContext(ContextProvider)
+  const {setIncomes,setRecents,Recentes,recentTrans}=useContext(ContextProvider)
   const [income, setIncome] = useState([{}]);
-  const[change,setChange]=useState(true)
+  const[change,setChange]=useState(true);
+  const[amount,setAmount]=useState(0);
 
 
   useEffect(() => {
     const getIncom = async () => {
       let res = await getIncome();
       setIncome(res.Income);
-      setIncomes(res.Income)
-      
-      
+      setIncomes(res.Income);
+     let Amount =await Today(res.Income);   
+     setAmount(Amount)
     };
     getIncom();
   }, [change]);
 
-let amount=0;
-  income.forEach(data => {
-    var d = new Date(data.createdAt);
-    let tarik= d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
-    let date = new Date()
-    let today= date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()
-    if(tarik===today){
-      amount=amount+data.amount
-    }
-});
+
 const handleSubmit = async(e)=>{
   e.preventDefault()
   let form = e.target
@@ -39,6 +32,10 @@ const handleSubmit = async(e)=>{
 
   let res = await addIncome(formObj);
  if(res.success){
+  recentTrans.push(formObj);
+  
+  setRecents(recentTrans)
+  console.log(Recentes)
   alert(res.message);
   setChange(!change)
  }
@@ -52,11 +49,11 @@ const handleSubmit = async(e)=>{
       <h1 style={{ textAlign: "center", background: "white", padding: "7px" }}>
         Total Income <small>(today): $ {amount}</small>
       </h1>
-      <div style={{ display: "flex" }}>
+      <div className="flex" style={{ display: "flex" }}>
         <Form handleSubmit={handleSubmit} Form={'Add Income'} change={change} setChange={setChange} />
         <div>
           {income.length===0?'':income.map((data) => (
-           <History change={change} setChange={setChange}  data={data} key={data._id} />
+           <History Delete={delIncome} change={change} setChange={setChange}  data={data} key={data._id} />
           ))}
         </div>
       </div>
