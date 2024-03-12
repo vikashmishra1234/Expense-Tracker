@@ -8,7 +8,6 @@ import Balance from './Balace'
 
 const Dashboard = () => {
     const {recentTrans,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
-    console.log(Recentes);
     useEffect(() => {
         const getIncom = async () => {
           let res = await getIncome();
@@ -25,6 +24,9 @@ const Dashboard = () => {
   return (
     <>
     <div style={{paddingTop:'20px'}}>
+    <header>
+    <Balance/>
+    </header>
 
     <div  className='dashboard'>
     <Chart/>
@@ -41,9 +43,7 @@ const Dashboard = () => {
     </aside>
     </div>
     </div>
-    <footer>
-    <Balance/>
-    </footer>
+   
     </div>
     </>
   )
