@@ -17,8 +17,8 @@ const Sidebar = () => {
 
       <ul>
         <li><LuLayoutDashboard/> <Link to="/dashboard">Dashboard</Link></li>
-        <li><MdAttachMoney size={20}/> <Link to="/income">income</Link></li>
-        <li><FcMoneyTransfer/> <Link to="/expense">expense</Link></li>
+        <li><MdAttachMoney size={30}/> <Link to="/income">income</Link></li>
+        <li><FcMoneyTransfer size={28}/> <Link to="/expense">expense</Link></li>
       </ul>
         </nav>
     </aside>
