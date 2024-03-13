@@ -5,8 +5,9 @@ import Form from "./Form";
 import { Expenses, delExpense, getexpense } from "../Api";
 import ContextProvider from "../context/ContextProvider";
 import { Today, calculateBalance } from "../TodayExpense";
+import Sidebar from "../sidebar/Sidebar";
 const Addexpense = () => {
-  const {setExpenses,setOpened,Opened,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
+  const {setExpenses,user,setOpened,Opened,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
   const [expense, setExpense] = useState([]);
   const[change,setChange]=useState(true)
   const[amount,setAmount]=useState(0);
@@ -38,6 +39,8 @@ let currentBalance=calculateBalance(Incomes,Expensess);
       alert("not enough money");
       return;
      }
+     formObj.userId=localStorage.getItem("userId");
+    
     let res = await Expenses(formObj);
     if(res.success){
       recentTrans.push(formObj);
@@ -52,6 +55,8 @@ let currentBalance=calculateBalance(Incomes,Expensess);
    }
 }
   return (
+    <div style={{display:'flex',justifyContent:'space-between',width:'98%',gap:"14px"}}  className="sides">
+<Sidebar/>
     <main className="main">
 
             <div className='ham' onClick={()=>setOpened(Opened=>!Opened)}>{
@@ -70,6 +75,7 @@ let currentBalance=calculateBalance(Incomes,Expensess);
         </div>
       </div>
     </main>
+    </div>
   );
 };
 

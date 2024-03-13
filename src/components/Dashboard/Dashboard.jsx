@@ -5,6 +5,7 @@ import '../style/style.css'
 import ContextProvider from '../context/ContextProvider'
 import { getIncome, getexpense } from '../Api'
 import Balance from './Balace'
+import Sidebar from '../sidebar/Sidebar'
 
 const Dashboard = () => {
     const {setOpened,Opened,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
@@ -23,7 +24,8 @@ const Dashboard = () => {
     
     
   return (
-    <>
+    <div style={{display:'flex',justifyContent:'space-between',width:'98%'}} className='sides'>
+      <Sidebar/>
           <div className='ham' onClick={()=>setOpened(Opened=>!Opened)}>{
              Opened?'Close':"Menu"
           }</div>
@@ -50,7 +52,7 @@ const Dashboard = () => {
     </div>
    
     </div>
-    </>
+    </div>
   )
 }
 

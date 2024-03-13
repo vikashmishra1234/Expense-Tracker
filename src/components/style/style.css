@@ -50,6 +50,12 @@ li a{
     position: absolute;
     display: none;
 }
+.form-main{
+
+}
+.form-main .form-container button{
+    background-color: blue;
+}
 
 
 @media only screen and (max-width: 480px) {
@@ -57,7 +63,7 @@ li a{
     .aside{
         display: none;
         position: absolute;
-        transition: 11s ease-out;
+        top: 6%;
     }
     .nav{
         width: 219px;
@@ -67,10 +73,18 @@ li a{
     }
   .ham{
     display: block;
+    background: pink;
+    margin: 5px;
     font-weight: bold;
     padding: 5px;
     cursor: pointer;
     color: indianred;
+    border: 1px solid wheat;
+    border-radius: 8px;
+  }
+  .ham:hover{
+    background-color: rgb(221, 12, 47);
+    color: wheat;
   }
     .dashboard{
         flex-direction: column;

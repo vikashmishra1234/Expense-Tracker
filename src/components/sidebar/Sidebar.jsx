@@ -16,7 +16,7 @@ const Sidebar = () => {
        <div>Mons <br /> <small style={{fontSize:'13px'}}>your money tracker</small></div> </header> 
 
       <ul>
-        <li><LuLayoutDashboard/> <Link to="/">Dashboard</Link></li>
+        <li><LuLayoutDashboard/> <Link to="/dashboard">Dashboard</Link></li>
         <li><MdAttachMoney size={20}/> <Link to="/income">income</Link></li>
         <li><FcMoneyTransfer/> <Link to="/expense">expense</Link></li>
       </ul>
