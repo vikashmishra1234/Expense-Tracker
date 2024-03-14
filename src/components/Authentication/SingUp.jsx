@@ -19,10 +19,10 @@ const SingUp = () => {
             localStorage.setItem("userId",res.user._id) 
             
             setUser(res)
+            localStorage.setItem("token",res.token);
             alert(res.message);
             Navigate('/dashboard');
             
-            localStorage.setItem("token",res.token);
 
         }
         else{
