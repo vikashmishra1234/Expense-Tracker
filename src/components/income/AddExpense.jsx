@@ -8,7 +8,7 @@ import { Today, calculateBalance } from "../TodayExpense";
 import Sidebar from "../sidebar/Sidebar";
 import Swal from "sweetalert2";
 const Addexpense = () => {
-  const {setExpenses,user,setOpened,Opened,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
+  const {setExpenses,setLoader,setOpened,Opened,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
   const [expense, setExpense] = useState([]);
   const[change,setChange]=useState(true)
   const[amount,setAmount]=useState(0);
@@ -52,8 +52,9 @@ let currentBalance=calculateBalance(Incomes,Expensess);
      }
      formObj.userId=localStorage.getItem("userId");
      formObj.type = "expense";
-    
+    setLoader(true);
     let res = await Expenses(formObj);
+    setLoader(false)
     if(res.success){
       recentTrans.push(formObj);
  

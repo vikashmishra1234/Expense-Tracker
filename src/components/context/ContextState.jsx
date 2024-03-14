@@ -10,12 +10,13 @@ const ContextState = (props) => {
     const [CurrentBalance,setCurrentBalance]=useState(0);
     const [Opened,setOpened] = useState(false);
     const [user,setUser] = useState([]);
+    const[Loader,setLoader]=useState(false);
 
    
    
  
   return (
-    <ContextProvider.Provider value={{Expensess,Incomes,Opened,CurrentBalance,setOpened,Recentes,recentTrans,Changes,user,setUser,setCurrentBalance,setChanges,setRecents,setIncomes,setExpenses}} >
+    <ContextProvider.Provider value={{Expensess,setLoader,Loader,Incomes,Opened,CurrentBalance,setOpened,Recentes,recentTrans,Changes,user,setUser,setCurrentBalance,setChanges,setRecents,setIncomes,setExpenses}} >
         {props.children}
     </ContextProvider.Provider>
   )

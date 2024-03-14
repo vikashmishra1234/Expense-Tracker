@@ -8,7 +8,7 @@ import { Today } from "../TodayExpense";
 import Sidebar from "../sidebar/Sidebar";
 import Swal from "sweetalert2";
 const AddIncome = () => {
-  const {setIncomes,setOpened,Opened,setRecents,user,recentTrans}=useContext(ContextProvider)
+  const {setIncomes,setOpened,Opened,setRecents,setLoader,recentTrans}=useContext(ContextProvider)
   const [income, setIncome] = useState([{}]);
   const[change,setChange]=useState(true);
   const[amount,setAmount]=useState(0);
@@ -45,7 +45,9 @@ const handleSubmit = async(e)=>{
   formObj.userId = localStorage.getItem("userId");
   formObj.type="income";
   console.log(formObj)
+  setLoader(true)
   let res = await addIncome(formObj);
+  setLoader(false)
  if(res.success){
   recentTrans.push(formObj);
   

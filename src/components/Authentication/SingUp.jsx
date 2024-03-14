@@ -4,18 +4,21 @@ import { signUp } from '../Api';
 import { useNavigate ,Link} from 'react-router-dom';
 import ContextProvider from '../context/ContextProvider';
 import Swal from 'sweetalert2';
+import Spinner from '../../assets/Spinner.gif'
 
 const SingUp = () => {
 
     const Navigate = useNavigate();
-    const {setUser} = useContext(ContextProvider);
+    const {setUser,setLoader,Loader} = useContext(ContextProvider);
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
         let form = e.target
         let formData = new FormData(form)
         let formObj = Object.fromEntries(formData.entries());
+        setLoader(true);
         let res = await signUp(formObj);
+        setLoader(false)
         if(res.success){
             localStorage.setItem("userId",res.user._id) 
             
@@ -46,7 +49,7 @@ const SingUp = () => {
         <input placeholder='your name' name='Name' type="text" required />
         <input placeholder='email' name='Email' type="email" required />
         <input placeholder='make password' name='Password' type="password" required/>
-        <button  type='submit'>SignUP</button>
+        <button  type='submit'>{Loader?'Please wait...':'SignUp'}</button>
     </form>
     <div style={{textAlign:'center',marginTop:"20px"}}>
 
