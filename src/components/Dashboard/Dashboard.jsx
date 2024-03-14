@@ -6,6 +6,7 @@ import ContextProvider from '../context/ContextProvider'
 import { getIncome, getexpense } from '../Api'
 import Balance from './Balace'
 import Sidebar from '../sidebar/Sidebar'
+import Swal from 'sweetalert2'
 
 const Dashboard = () => {
     const {setOpened,Opened,user,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
@@ -16,8 +17,21 @@ const Dashboard = () => {
           
           let res = await getIncome();
           let res2 = await getexpense();
-          setExpenses(res2.Expense);
-          setIncomes(res.Income);
+          if(res.Income){
+
+            setIncomes(res.Income);
+          }
+          if(res2.Expense){
+
+            setExpenses(res2.Expense);
+          }
+          else{
+            Swal.fire({
+              text:"something went wrong",
+              icon:'error',
+              confirmButtonAriaLabel:true
+            })
+          }
           
          
         };

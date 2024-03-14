@@ -3,6 +3,7 @@ import '../style/style.css'
 import { signUp } from '../Api';
 import { useNavigate ,Link} from 'react-router-dom';
 import ContextProvider from '../context/ContextProvider';
+import Swal from 'sweetalert2';
 
 const SingUp = () => {
 
@@ -20,13 +21,21 @@ const SingUp = () => {
             
             setUser(res)
             localStorage.setItem("token",res.token);
-            alert(res.message);
+            Swal.fire({
+                text:res.message,
+                icon:'success',
+              
+              })
             Navigate('/dashboard');
             
 
         }
         else{
-            alert(res.error);
+            Swal.fire({
+                text:res.error,
+                icon:'error',
+                
+              })
         }
         
     }

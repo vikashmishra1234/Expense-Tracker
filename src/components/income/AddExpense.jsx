@@ -6,6 +6,7 @@ import { Expenses, delExpense, getexpense } from "../Api";
 import ContextProvider from "../context/ContextProvider";
 import { Today, calculateBalance } from "../TodayExpense";
 import Sidebar from "../sidebar/Sidebar";
+import Swal from "sweetalert2";
 const Addexpense = () => {
   const {setExpenses,user,setOpened,Opened,Incomes,Expensess,Recentes,setRecents,recentTrans}=useContext(ContextProvider)
   const [expense, setExpense] = useState([]);
@@ -42,7 +43,11 @@ let currentBalance=calculateBalance(Incomes,Expensess);
     let formData = new FormData(form)
     let formObj = Object.fromEntries(formData.entries());
     if(currentBalance<formObj.amount){
-      alert("not enough money");
+      Swal.fire({
+        text:"you dont have enough money",
+        icon:'error',
+        confirmButtonAriaLabel:true
+      })
       return;
      }
      formObj.userId=localStorage.getItem("userId");
@@ -53,11 +58,19 @@ let currentBalance=calculateBalance(Incomes,Expensess);
  
   setRecents(recentTrans);
 
-    alert(res.message);
+  Swal.fire({
+    text:res.message,
+    icon:'success',
+    
+  })
     setChange(!change)
    }
    else if(!res.success){
-    alert(res.error)
+    Swal.fire({
+      text:res.error,
+      icon:'error',
+      confirmButtonAriaLabel:true
+    })
    }
 }
   return (

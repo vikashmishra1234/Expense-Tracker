@@ -6,6 +6,7 @@ import { addIncome, delIncome, getIncome } from "../Api";
 import ContextProvider from "../context/ContextProvider";
 import { Today } from "../TodayExpense";
 import Sidebar from "../sidebar/Sidebar";
+import Swal from "sweetalert2";
 const AddIncome = () => {
   const {setIncomes,setOpened,Opened,setRecents,user,recentTrans}=useContext(ContextProvider)
   const [income, setIncome] = useState([{}]);
@@ -22,7 +23,11 @@ const AddIncome = () => {
         setIncomes(res.Income);
       }
       else{
-        alert("something went wrong");
+        Swal.fire({
+          text:"something went wrong",
+          icon:'error',
+          confirmButtonAriaLabel:true
+        })
       }
       setOpened(false);
      let Amount =await Today(res.Income);   
@@ -45,11 +50,19 @@ const handleSubmit = async(e)=>{
   
   setRecents(recentTrans)
   
-  alert(res.message);
+  Swal.fire({
+    text:res.message,
+    icon:'success',
+    confirmButtonAriaLabel:true
+  })
   setChange(!change)
  }
  else if(!res.success){
-  alert(res.error)
+  Swal.fire({
+    text:res.error,
+    icon:'error',
+    confirmButtonAriaLabel:true
+  })
  }
 
 }

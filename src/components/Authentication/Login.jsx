@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { userLogin } from '../Api';
 import { useNavigate } from 'react-router-dom';
 import ContextProvider from '../context/ContextProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const Navigate = useNavigate()
@@ -16,13 +17,21 @@ const Login = () => {
             localStorage.setItem("userId",res.user._id) 
             setUser(res)
             localStorage.setItem("token",res.token);
-            alert(res.message);
+            Swal.fire({
+                text:res.message,
+                icon:'success',
+                
+              })
             Navigate('/dashboard');
           
 
         }
         else{
-            alert(res.error);
+            Swal.fire({
+                text:res.error,
+                icon:'error',
+              
+              })
         }
     }
   return (
