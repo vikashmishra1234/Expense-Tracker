@@ -20,9 +20,9 @@ const Compoents = () => {
     
         <Routes>
          
-          <Route exact path='/' element={localStorage.getItem("userId")?<Dashboard key={1}/>:<SingUp key={32}/>}/>
+          <Route exact path='/' element={<SingUp/>}/>
           <Route exact path='/login' element={<Login/>}/>
-          <Route exact path='/dashboard' element={<Dashboard key={21}/>}/>
+          <Route exact path='/dashboard' element={<Dashboard />}/>
           <Route exact path='/income' element={<AddIncome/>}/>
           <Route exact path='/expense' element={<AddExpense/>}/>
         </Routes>

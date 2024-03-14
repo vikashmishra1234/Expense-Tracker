@@ -8,10 +8,12 @@ import Balance from './Balace'
 import Sidebar from '../sidebar/Sidebar'
 
 const Dashboard = () => {
-    const {setOpened,Opened,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
+    const {setOpened,Opened,user,Recentes,setIncomes,setExpenses} = useContext(ContextProvider);
     useEffect(() => {
         const getIncom = async () => {
           setOpened(false)
+         
+          
           let res = await getIncome();
           let res2 = await getexpense();
           setExpenses(res2.Expense);

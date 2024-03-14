@@ -14,10 +14,10 @@ const Login = () => {
         let res = await userLogin(formObj);
         if(res.success){
             localStorage.setItem("userId",res.user._id) 
-            setUser(res.user)
+            setUser(res)
             alert(res.message);
             Navigate('/dashboard');
-            sessionStorage.setItem("token",res.token)
+          
             localStorage.setItem("token",res.token);
 
         }

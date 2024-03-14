@@ -16,8 +16,14 @@ const Addexpense = () => {
   useEffect(() => {
     const getExp = async () => {
       let res = await getexpense();
-      setExpense(res.Expense);
-      setExpenses(res.Expense);
+      if(res.Expense){
+
+        setExpense(res.Expense);
+        setExpenses(res.Expense);
+      }
+      else{
+        alert("something went wrong");
+      }
       setOpened(false);
       let amount = await Today(res.Expense);
       setAmount(amount)

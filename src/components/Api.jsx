@@ -33,7 +33,11 @@ export const Expenses = async(data)=>{
 
 export const getexpense = async()=>{
     try {
-        const res = await axios.get(`https://backend-expense-tracker-79np.onrender.com/api/products/expense/${localStorage.getItem("userId")}`,config)
+        const res = await axios.get(`https://backend-expense-tracker-79np.onrender.com/api/products/expense/${localStorage.getItem("userId")}`,{
+            headers: {
+                Authorization: `bearer ${localStorage.getItem("token")}`,
+              }
+        })
         return res.data;
     } catch (error) {
         console.log("error while getting  expenses"+error.message);
@@ -41,11 +45,16 @@ export const getexpense = async()=>{
     }
 }
 export const getIncome = async()=>{
-    
     try {
-        const res = await axios.get(`https://backend-expense-tracker-79np.onrender.com/api/products/${localStorage.getItem("userId")}`,config)
+        const res = await axios.get(`https://backend-expense-tracker-79np.onrender.com/api/products/${localStorage.getItem("userId")}`,{
+            headers: {
+                Authorization: `bearer ${localStorage.getItem("token")}`,
+              }
+        })
+      
+
+           return res.data;
        
-        return res.data;
     } catch (error) {
         console.log("error while getting income",error.message);
         return error.message;
@@ -74,7 +83,7 @@ export const signUp = async(data)=>{
     
     try {
         const res = await axios.post(`https://backend-expense-tracker-79np.onrender.com/api/signup`,data,config);
-        console.log(res.data)
+       
         return res.data;
     } catch (error) {
         console.log("error while deleting expense" +error.message);

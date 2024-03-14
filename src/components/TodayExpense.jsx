@@ -23,7 +23,7 @@ export const Today = (Data) => {
 export const calculateBalance = (data1,data2)=>{
   let totalIncome=0;
   let totalExpense=0;
-  console.log(data2)
+ 
 
     data1.length!=0&&data1.forEach((element) => {
     totalIncome= element.amount+totalIncome;

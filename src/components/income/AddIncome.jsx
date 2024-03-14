@@ -16,8 +16,14 @@ const AddIncome = () => {
   useEffect(() => {
     const getIncom = async () => {
       let res = await getIncome();
-      setIncome(res.Income);
-      setIncomes(res.Income);
+      if(res.Income){
+
+        setIncome(res.Income);
+        setIncomes(res.Income);
+      }
+      else{
+        alert("something went wrong");
+      }
       setOpened(false);
      let Amount =await Today(res.Income);   
      setAmount(Amount)
