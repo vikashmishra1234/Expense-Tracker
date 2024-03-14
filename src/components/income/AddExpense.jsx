@@ -51,6 +51,7 @@ let currentBalance=calculateBalance(Incomes,Expensess);
       return;
      }
      formObj.userId=localStorage.getItem("userId");
+     formObj.type = "expense";
     
     let res = await Expenses(formObj);
     if(res.success){

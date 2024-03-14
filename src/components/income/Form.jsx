@@ -8,9 +8,9 @@ const Form = ({setChange,change,Form,handleSubmit}) => {
     <section>
     <form action="" onSubmit={handleSubmit}>
       <strong style={{textAlign:'center',fontSize:'22px'}}>{Form}</strong>
-      <input name='title' placeholder='title' type="text" />
-      <input name='amount' placeholder='amount' type="phone" />
-      <input name='reference' placeholder='reference' type="text" />
+      <input name='title' placeholder='from where you got or expand?' type="text" />
+      <input name='amount' placeholder='amount?' type="phone" />
+      <input name='reference' placeholder='small description' type="text" />
       <button type="submit" >+ {Form}</button>
     </form>
     </section>

@@ -43,6 +43,7 @@ const handleSubmit = async(e)=>{
   let formData = new FormData(form)
   let formObj = Object.fromEntries(formData.entries())
   formObj.userId = localStorage.getItem("userId");
+  formObj.type="income";
   console.log(formObj)
   let res = await addIncome(formObj);
  if(res.success){
